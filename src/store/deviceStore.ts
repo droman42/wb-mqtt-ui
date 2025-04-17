@@ -82,8 +82,33 @@ export const useDeviceStore = defineStore('device', {
           
           // Ensure config has the necessary properties
           if (!config.id) config.id = deviceId;
-          if (!config.name) config.name = deviceId;
-          if (!Array.isArray(config.commands)) config.commands = [];
+          if (!config.name) {
+            // Try to get name from device_name if it exists
+            config.name = config.device_name || deviceId;
+          }
+          
+          // Handle both array and object formats for commands
+          if (!Array.isArray(config.commands)) {
+            // If commands is an object, convert it to array
+            if (config.commands && typeof config.commands === 'object') {
+              const commandsArray: Command[] = [];
+              
+              // Convert each command entry to the expected format
+              Object.entries(config.commands).forEach(([key, value]: [string, any]) => {
+                commandsArray.push({
+                  name: value.description || key,
+                  action: value.action,
+                  topic: value.topic,
+                  ...value // Keep other properties if any
+                });
+              });
+              
+              config.commands = commandsArray;
+            } else {
+              // If no commands at all, create empty array
+              config.commands = [];
+            }
+          }
           
           this.deviceConfigs[deviceId] = config;
           this.addLog(`Loaded configuration for device: ${deviceId}`, true);
