@@ -1,5 +1,5 @@
 <template>
-  <div class="error-display" v-if="error">
+  <div class="error-display" :class="errorTypeClass" v-if="error">
     <h3>{{ error.title }}</h3>
     <p>{{ error.message }}</p>
     
@@ -103,6 +103,11 @@ defineEmits<{
 const apiBaseUrl = computed(() => {
   return import.meta.env.VITE_API_BASE_URL || '/api';
 });
+
+// Ensure props is used - use it for a helpful computed property
+const errorTypeClass = computed(() => {
+  return props.error ? `error-type-${props.error.type}` : '';
+});
 </script>
 
 <style scoped>
@@ -112,6 +117,27 @@ const apiBaseUrl = computed(() => {
   padding: 20px;
   border-radius: 8px;
   margin: 20px 0;
+}
+
+/* Error type-specific styling */
+.error-type-cors {
+  border-left: 5px solid #856404;
+}
+
+.error-type-network {
+  border-left: 5px solid #721c24;
+}
+
+.error-type-device {
+  border-left: 5px solid #0c5460;
+}
+
+.error-type-server {
+  border-left: 5px solid #1b1e21;
+}
+
+.error-type-unknown {
+  border-left: 5px solid #6c757d;
 }
 
 h3 {

@@ -27,20 +27,6 @@ apiClient.interceptors.response.use(
   }
 );
 
-// Add type definitions
-interface DeviceCommand {
-  name?: string;
-  action?: string;
-  topic?: string;
-  description?: string;
-  [key: string]: any;
-}
-
-interface MqttPublishRequest {
-  topic: string;
-  payload: string;
-}
-
 export const apiService = {
   /**
    * Load system configuration
