@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mqtt-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - API_HOST=api-server
+      - API_PORT=8000
+      - API_PROTOCOL=http
+    networks:
+      - mqtt-network
+    depends_on:
+      - api-server
+
+  # Example API server (replace with your actual backend)
+  api-server:
+    image: your-api-image:latest
+    # If you have a custom Dockerfile for your API, uncomment the following lines
+    # build:
+    #   context: ./api
+    #   dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - mqtt-network
+    # Add any environment variables your API needs
+    # environment:
+    #   - MQTT_BROKER=mqtt-broker
+    #   - MQTT_PORT=1883
+
+networks:
+  mqtt-network:
+    driver: bridge 

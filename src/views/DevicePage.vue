@@ -62,6 +62,7 @@ import ErrorDisplay from '../components/ErrorDisplay.vue';
 import { useDeviceStore } from '../store/deviceStore';
 import { useUiStore } from '../store/uiStore';
 import { checkServerConnectivity } from '../utils/serverCheck';
+import { API_BASE_URL } from '../config/apiConfig';
 
 // Export the component for Vetur
 defineComponent({
@@ -82,7 +83,7 @@ const error = ref<ErrorInfo | null>(null);
 const isConnecting = ref(false);
 
 const apiBaseUrl = computed(() => {
-  return import.meta.env.VITE_API_BASE_URL || '/api';
+  return API_BASE_URL;
 });
 
 const debugInfo = computed(() => {

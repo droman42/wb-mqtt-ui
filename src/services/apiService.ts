@@ -1,18 +1,13 @@
 import axios from 'axios';
-
-// Use /api prefix for all requests - the proxy will strip it when forwarding 
-const API_BASE_URL = '/api';
+import { API_BASE_URL, API_TIMEOUT, API_HEADERS } from '../config/apiConfig';
 
 // Configure axios defaults
-axios.defaults.timeout = 10000; // 10 second timeout
+axios.defaults.timeout = API_TIMEOUT;
 
 // Create axios instance with custom config
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  }
+  headers: API_HEADERS
 });
 
 // Response interceptor for logging

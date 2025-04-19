@@ -80,13 +80,21 @@ npm run preview
 
 ## Configuration
 
-The application connects to a backend API. Configure the API endpoint in the `.env` file:
+The application connects to a backend API and supports multiple configuration methods:
+
+### Development Mode
+
+You can configure the API endpoint in the `.env` file:
 
 ```
-VITE_API_BASE_URL=http://your-server-url
+# For direct API access (no proxy)
+VITE_API_BASE_URL=http://your-server-url:8000
+
+# For development proxy configuration
+VITE_API_TARGET=http://localhost:8000
 ```
 
-Alternatively, the application can use a proxy configuration in `vite.config.ts` to avoid CORS issues when connecting to a local API:
+By default, the application will use a proxy configuration in `vite.config.ts` to avoid CORS issues when connecting to a local API:
 
 ```js
 server: {
@@ -99,6 +107,35 @@ server: {
   }
 }
 ```
+
+### Docker Deployment
+
+For Docker deployment, you can configure the API connection using environment variables:
+
+```bash
+docker run -p 8080:80 \
+  -e API_HOST=your-api-host \
+  -e API_PORT=8000 \
+  -e API_PROTOCOL=http \
+  mqtt-ui
+```
+
+Or using docker-compose:
+
+```yaml
+version: '3'
+services:
+  mqtt-ui:
+    image: mqtt-ui:latest
+    ports:
+      - "8080:80"
+    environment:
+      - API_HOST=api-server
+      - API_PORT=8000
+      - API_PROTOCOL=http
+```
+
+The Docker container uses an entrypoint script that generates a runtime configuration based on these environment variables.
 
 ## Usage
 

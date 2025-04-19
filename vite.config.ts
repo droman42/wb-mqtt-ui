@@ -4,15 +4,17 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory
-  // No need to store in a variable if not used
-  loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd())
+  
+  // Default API target if not specified in env
+  const apiTarget = env.VITE_API_TARGET || 'http://localhost:8000'
   
   return {
     plugins: [vue()],
     server: {
       proxy: {
         '/api': {
-          target: 'http://localhost:8000',
+          target: apiTarget,
           changeOrigin: true,
           // Remove the /api prefix when forwarding requests
           rewrite: (path) => path.replace(/^\/api/, ''),
