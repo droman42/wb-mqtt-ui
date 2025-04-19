@@ -25,7 +25,7 @@ h3 {
 
 /* Individual log entry styling */
 .log-entry {
-  padding: 8px 10px;          /* Inner spacing */
+  padding: 2px 10px;          /* Reduced vertical padding from 8px to 4px */
   border-bottom: 1px solid #eee; /* Light separator between entries */
   font-size: 14px;            /* Slightly smaller text */
   display: flex;              /* Use flexbox for layout */
@@ -48,14 +48,20 @@ h3 {
 
 /* Timestamp section of log entry */
 .timestamp {
-  flex: 0 0 80px;             /* Fixed width for timestamp */
+  min-width: 90px;            /* Minimum width to accommodate most timestamps */
+  white-space: nowrap;        /* Prevent timestamp from wrapping */
+  text-overflow: ellipsis;    /* Show ellipsis for very long timestamps */
+  overflow: hidden;           /* Hide overflow content */
   color: #7f8c8d;             /* Gray color */
   margin-right: 10px;         /* Space after timestamp */
+  padding-right: 5px;         /* Additional padding between timestamp and message */
 }
 
 /* Message content of log entry */
 .message {
   flex: 1;                    /* Take up remaining space */
+  overflow-wrap: break-word;  /* Allow word breaking for long messages */
+  word-break: break-word;     /* Break longer words if needed */
 }
 
 /* Empty state when no logs are available */

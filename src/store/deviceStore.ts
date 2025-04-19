@@ -171,7 +171,9 @@ export const useDeviceStore = defineStore('device', {
      * Add a log entry
      */
     addLog(message: string, success: boolean) {
-      const timestamp = new Date().toLocaleTimeString();
+      const now = new Date();
+      // Format timestamp as HH:MM:SS for more consistent display
+      const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
       this.logs.unshift({ message, timestamp, success });
       
       // Keep logs to a reasonable size
