@@ -1,0 +1,67 @@
+/* Container for the logs panel with light background and subtle shadow */
+.logs-panel {
+  margin-top: 30px;           /* Space above the panel */
+  background-color: #f5f5f5;  /* Light gray background */
+  border-radius: 8px;         /* Rounded corners */
+  padding: 20px;              /* Inner spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Panel heading with bottom border */
+h3 {
+  margin-top: 0;              /* Remove top margin */
+  margin-bottom: 15px;        /* Space below heading */
+  color: #2c3e50;             /* Dark blue color */
+  border-bottom: 1px solid #ddd; /* Light border below heading */
+  padding-bottom: 10px;       /* Space below text */
+}
+
+/* Scrollable container for log entries with fixed height */
+.logs-container {
+  max-height: 300px;          /* Limit height and enable scrolling */
+  overflow-y: auto;           /* Vertical scrollbar when needed */
+  font-family: monospace;     /* Monospace font for consistent spacing */
+}
+
+/* Individual log entry styling */
+.log-entry {
+  padding: 8px 10px;          /* Inner spacing */
+  border-bottom: 1px solid #eee; /* Light separator between entries */
+  font-size: 14px;            /* Slightly smaller text */
+  display: flex;              /* Use flexbox for layout */
+}
+
+/* Remove border from last entry to avoid double borders */
+.log-entry:last-child {
+  border-bottom: none;        /* Remove bottom border from last entry */
+}
+
+/* Success log entry with light green background */
+.log-entry.success {
+  background-color: rgba(46, 204, 113, 0.1); /* Light green background */
+}
+
+/* Error log entry with light red background */
+.log-entry.error {
+  background-color: rgba(231, 76, 60, 0.1); /* Light red background */
+}
+
+/* Timestamp section of log entry */
+.timestamp {
+  flex: 0 0 80px;             /* Fixed width for timestamp */
+  color: #7f8c8d;             /* Gray color */
+  margin-right: 10px;         /* Space after timestamp */
+}
+
+/* Message content of log entry */
+.message {
+  flex: 1;                    /* Take up remaining space */
+}
+
+/* Empty state when no logs are available */
+.empty-log {
+  color: #7f8c8d;             /* Gray text color */
+  font-style: italic;         /* Italic text for emphasis */
+  padding: 15px 0;            /* Vertical padding */
+  text-align: center;         /* Center text */
+} 

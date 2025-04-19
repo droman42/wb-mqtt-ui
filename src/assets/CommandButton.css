@@ -1,0 +1,134 @@
+/* Container for the entire command button component */
+.command-button {
+  margin-bottom: 10px;       /* Space between multiple buttons */
+  display: flex;             /* Use flexbox for layout */
+  align-items: flex-start;   /* Align items at the top */
+  flex-wrap: wrap;           /* Allow wrapping on small screens */
+}
+
+/* Container for the button and details toggle */
+.command-info {
+  display: flex;             /* Use flexbox for layout */
+  flex-direction: column;    /* Stack elements vertically */
+  flex: 1;                   /* Take up available space */
+}
+
+/* Styling for the standard text button */
+button {
+  padding: 10px 15px;        /* Inner spacing */
+  border: none;              /* Remove default border */
+  border-radius: 4px;        /* Rounded corners */
+  background-color: #2c3e50; /* Dark blue background */
+  color: white;              /* White text for contrast */
+  cursor: pointer;           /* Show pointer cursor on hover */
+  min-width: 150px;          /* Minimum button width */
+  font-weight: bold;         /* Bold text for emphasis */
+  transition: background-color 0.3s; /* Smooth background transition */
+}
+
+/* Hover effect for standard buttons */
+button:hover {
+  background-color: #1c2e40; /* Darker background on hover */
+}
+
+/* Active state for standard buttons */
+button:active {
+  background-color: #0c1e30; /* Even darker background when clicked */
+}
+
+/* Style for the button when command is executing */
+button.is-executing {
+  background-color: #95a5a6; /* Grey background when executing */
+  cursor: wait;              /* Show waiting cursor */
+}
+
+/* Styling for the details toggle button */
+.details-toggle {
+  background-color: #6c757d; /* Grey background */
+  color: white;              /* White text for contrast */
+  padding: 2px 8px;          /* Smaller padding */
+  font-size: 12px;           /* Smaller font size */
+  margin-top: 5px;           /* Space above button */
+  min-width: auto;           /* Auto width based on content */
+  align-self: flex-start;    /* Align to the left */
+}
+
+/* Container for command details */
+.details {
+  background-color: #f8f9fa; /* Light background */
+  border: 1px solid #dee2e6; /* Light grey border */
+  border-radius: 4px;        /* Rounded corners */
+  padding: 10px;             /* Inner spacing */
+  margin-top: 5px;           /* Space above container */
+  font-size: 12px;           /* Smaller font size */
+  overflow-x: auto;          /* Horizontal scrolling if needed */
+  width: 100%;               /* Full width */
+}
+
+/* Styling for pre-formatted text in details */
+.details pre {
+  margin: 0 0 5px 0;         /* Remove top/bottom margin, add small bottom margin */
+  white-space: pre-wrap;     /* Wrap text */
+  font-family: monospace;    /* Monospace font for code */
+}
+
+/* Container for MQTT toggle */
+.execution-mode {
+  margin-left: 10px;         /* Space from the button */
+  display: flex;             /* Use flexbox */
+  align-items: center;       /* Center items vertically */
+}
+
+/* Styling for MQTT toggle label */
+label {
+  display: flex;             /* Use flexbox */
+  align-items: center;       /* Center items vertically */
+  cursor: pointer;           /* Show pointer cursor */
+}
+
+/* Spacing for checkbox */
+input[type="checkbox"] {
+  margin-right: 5px;         /* Space after checkbox */
+}
+
+/* SVG Button Styles */
+/* Container for SVG button */
+.svg-button {
+  cursor: pointer;           /* Show pointer cursor */
+  display: flex;             /* Use flexbox */
+  flex-direction: column;    /* Stack elements vertically */
+  align-items: center;       /* Center items horizontally */
+  padding: 1.5rem 0.75rem;   /* Inner spacing - more vertical than horizontal */
+  background-color: var(--button-background); /* White background from variables */
+  border-radius: 12px;       /* Rounded corners */
+  box-shadow: 0 2px 6px var(--button-shadow); /* Subtle shadow for depth */
+  transition: transform 0.15s, box-shadow 0.15s; /* Smooth transitions for hover */
+  min-width: 120px;          /* Minimum button width */
+}
+
+/* Hover effect for SVG button */
+.svg-button:hover {
+  transform: translateY(-3px); /* Move up slightly */
+  box-shadow: 0 4px 10px var(--button-hover-shadow); /* Stronger shadow */
+}
+
+/* SVG icon styling */
+.svg-button svg {
+  width: 2.5rem;             /* Icon width */
+  height: 2.5rem;            /* Icon height */
+  fill: var(--foreground-color); /* Dark fill from variables */
+  margin-bottom: 0.5rem;     /* Space below icon */
+  transition: fill 0.2s;     /* Smooth color transition */
+}
+
+/* Hover effect for SVG icon */
+.svg-button:hover svg {
+  fill: var(--accent-color); /* Change to accent color on hover */
+}
+
+/* Text below SVG icon */
+.svg-button span {
+  font-size: 0.9rem;         /* Slightly smaller font */
+  user-select: none;         /* Prevent text selection */
+  text-align: center;        /* Center text */
+} 

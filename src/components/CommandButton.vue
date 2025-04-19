@@ -2,6 +2,7 @@
   <div class="command-button">
     <div class="command-info">
       <button 
+        v-if="!svgData"
         @click="executeCommand" 
         :disabled="isExecuting"
         :class="{ 'is-executing': isExecuting }"
@@ -9,6 +10,14 @@
       >
         {{ getCommandLabel }}
       </button>
+      <div v-else class="svg-button" @click="executeCommand" :title="getCommandInfo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect v-if="svgData.rect" v-bind="svgData.rect" />
+          <path v-for="(path, index) in svgData.paths" :key="index" :d="path" />
+          <text v-if="svgData.text" v-bind="svgData.text">{{ svgData.text.content }}</text>
+        </svg>
+        <span v-if="showButtonText">{{ props.command.description || getCommandLabel }}</span>
+      </div>
       
       <div v-if="showDetails" class="details">
         <pre>{{ JSON.stringify(command, null, 2) }}</pre>
@@ -32,12 +41,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useDeviceStore } from '../store/deviceStore';
+import { svgMapping } from '../utils/svgMapping';
 
 interface Command {
   name?: string;
   action?: string;
   actions?: string[];
   topic?: string;
+  description?: string;
   [key: string]: any;
 }
 
@@ -49,6 +60,8 @@ const deviceStore = useDeviceStore();
 const isExecuting = ref(false);
 const useMqtt = ref(false);
 const showDetails = ref(false);
+// Global configuration for showing text below SVG
+const showButtonText = ref(true);
 
 // Computed command label
 const getCommandLabel = computed(() => {
@@ -74,7 +87,19 @@ const getCommandInfo = computed(() => {
     parts.push(`Actions: ${props.command.actions.join(', ')}`);
   }
   
+  if (props.command.description) {
+    parts.push(`Description: ${props.command.description}`);
+  }
+  
   return parts.join('\n');
+});
+
+// Computed property to determine SVG data based on command action
+const svgData = computed(() => {
+  if (props.command.action && svgMapping[props.command.action]) {
+    return svgMapping[props.command.action];
+  }
+  return null;
 });
 
 const executeCommand = async () => {
@@ -99,85 +124,4 @@ const executeCommand = async () => {
 };
 </script>
 
-<style scoped>
-.command-button {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.command-info {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  background-color: #2c3e50;
-  color: white;
-  cursor: pointer;
-  min-width: 150px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #1c2e40;
-}
-
-button:active {
-  background-color: #0c1e30;
-}
-
-button.is-executing {
-  background-color: #95a5a6;
-  cursor: wait;
-}
-
-.details-toggle {
-  background-color: #6c757d;
-  color: white;
-  padding: 2px 8px;
-  font-size: 12px;
-  margin-top: 5px;
-  min-width: auto;
-  align-self: flex-start;
-}
-
-.details {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  padding: 10px;
-  margin-top: 5px;
-  font-size: 12px;
-  overflow-x: auto;
-  width: 100%;
-}
-
-.details pre {
-  margin: 0 0 5px 0;
-  white-space: pre-wrap;
-  font-family: monospace;
-}
-
-.execution-mode {
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-}
-
-label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-input[type="checkbox"] {
-  margin-right: 5px;
-}
-</style> 
+<style src="../assets/CommandButton.css" scoped></style> 

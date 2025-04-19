@@ -1,0 +1,86 @@
+/* Main error container with red background */
+.error-display {
+  background-color: #f8d7da;   /* Light red background */
+  color: #721c24;              /* Dark red text */
+  padding: 20px;               /* Inner spacing */
+  border-radius: 8px;          /* Rounded corners */
+  margin: 20px 0;              /* Vertical spacing */
+}
+
+/* Error type-specific styling with colored left borders */
+.error-type-cors {
+  border-left: 5px solid #856404; /* Yellow-orange border for CORS errors */
+}
+
+.error-type-network {
+  border-left: 5px solid #721c24; /* Dark red border for network errors */
+}
+
+.error-type-device {
+  border-left: 5px solid #0c5460; /* Teal border for device config errors */
+}
+
+.error-type-server {
+  border-left: 5px solid #1b1e21; /* Dark gray border for server errors */
+}
+
+.error-type-unknown {
+  border-left: 5px solid #6c757d; /* Medium gray border for unknown errors */
+}
+
+/* Error title styling */
+h3 {
+  margin-top: 0;               /* Remove top margin */
+}
+
+/* Solution container with white background */
+.solution-box {
+  background-color: #fff;      /* White background */
+  border: 1px solid #ddd;      /* Light gray border */
+  border-radius: 5px;          /* Rounded corners */
+  padding: 15px;               /* Inner spacing */
+  margin: 15px 0;              /* Vertical spacing */
+  color: #333;                 /* Dark gray text */
+}
+
+/* Container for code examples */
+.code-block {
+  background-color: #f8f9fa;   /* Light gray background */
+  border-radius: 5px;          /* Rounded corners */
+  padding: 10px;               /* Inner spacing */
+  margin-top: 10px;            /* Space above container */
+  overflow-x: auto;            /* Horizontal scroll for wide content */
+}
+
+/* Pre-formatted text container */
+pre {
+  margin: 0;                   /* Remove default margins */
+  white-space: pre-wrap;       /* Wrap text */
+  font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
+}
+
+/* Inline code styling */
+code {
+  font-family: 'Courier New', Courier, monospace; /* Monospace font */
+  background-color: #f0f0f0;   /* Light gray background */
+  padding: 2px 4px;            /* Small inner spacing */
+  border-radius: 3px;          /* Slightly rounded corners */
+}
+
+/* Ordered list styling */
+ol {
+  padding-left: 20px;          /* Indent the list */
+  margin-bottom: 0;            /* Remove bottom margin */
+}
+
+/* Retry button with red background */
+.retry-button {
+  background-color: #dc3545;   /* Red background */
+  color: white;                /* White text */
+  border: none;                /* Remove default border */
+  padding: 10px 20px;          /* Inner spacing */
+  border-radius: 5px;          /* Rounded corners */
+  font-weight: bold;           /* Bold text */
+  cursor: pointer;             /* Show pointer cursor on hover */
+  margin-top: 15px;            /* Space above button */
+} 

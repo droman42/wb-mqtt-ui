@@ -1,0 +1,54 @@
+/* Container for the device selection controls */
+.device-selector {
+  margin-bottom: 20px;       /* Space below the selector */
+  display: flex;             /* Use flexbox for layout */
+  align-items: center;       /* Vertically center items */
+}
+
+/* Label for the dropdown */
+label {
+  margin-right: 10px;        /* Space between label and select */
+  font-weight: bold;         /* Bold text for emphasis */
+}
+
+/* Dropdown select element styling */
+select {
+  padding: 8px 10px;         /* Inner spacing */
+  border-radius: 4px;        /* Rounded corners */
+  border: 1px solid #ccc;    /* Light gray border */
+  min-width: 200px;          /* Minimum width for dropdown */
+}
+
+/* Reload button with circular shape */
+.reload-button {
+  margin-left: 10px;         /* Space from the select dropdown */
+  width: 40px;               /* Fixed width */
+  height: 40px;              /* Fixed height (same as width for circle) */
+  border-radius: 50%;        /* Circular shape */
+  border: none;              /* Remove default border */
+  background-color: #3498db; /* Blue background */
+  color: white;              /* White text/icon color */
+  cursor: pointer;           /* Show pointer cursor on hover */
+  display: flex;             /* Use flexbox for centering */
+  align-items: center;       /* Center vertically */
+  justify-content: center;   /* Center horizontally */
+  transition: transform 0.3s; /* Smooth rotation animation */
+}
+
+/* Hover effect for reload button */
+.reload-button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+  transform: rotate(45deg);  /* Rotate button slightly on hover */
+}
+
+/* Reload icon styling */
+.reload-icon {
+  font-size: 20px;           /* Size of the reload icon */
+}
+
+/* Loading state indicator */
+.loading-indicator {
+  margin-left: 10px;         /* Space from other elements */
+  color: #3498db;            /* Blue text color */
+  font-style: italic;        /* Italic text for emphasis */
+} 

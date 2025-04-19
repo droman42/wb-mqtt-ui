@@ -40,9 +40,10 @@ export const svgMapping: Record<string, any> = {
 
 Modify the `CommandButton.vue` component to render SVGs based on the mapping.
 
-- **SVG Path Computation**: Use a computed property to determine the SVG data based on the command's action.
+- **SVG Path Computation**: Use a computed property to determine the SVG data based on the command's action. The corresponding SVG mapping should be searched based on 'action' field of command configuration.
 - **Template Update**: Modify the template to include SVG elements with path data.
 - **Individual Fallback**: For each button/action, check if an SVG mapping exists. If no SVG mapping is found for that specific command, continue using the current button style for that individual button.
+- **Text below SVG**: Text, placed below the SVG, comes from 'description' field of command configuration. To show it, or not should be a global configuration paramater.
 
 Example:
 
