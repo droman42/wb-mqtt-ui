@@ -10,7 +10,10 @@ export async function checkServerConnectivity(): Promise<{
 }> {
   try {
     console.log('Checking server connectivity...');
+    
+    // System endpoint is required for the app to function
     const data = await apiService.loadSystemConfig();
+    
     return {
       success: true,
       message: 'Connected to server successfully',

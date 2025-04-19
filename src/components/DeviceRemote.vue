@@ -11,7 +11,23 @@
       <button v-else @click="showDeviceDetails = true" class="toggle-button">Show Device Details</button>
     </div>
     
-    <div class="commands-container">
+    <div class="view-switcher">
+      <button 
+        @click="viewMode = 'flat'" 
+        :class="{ active: viewMode === 'flat' }"
+      >
+        Flat View
+      </button>
+      <button 
+        @click="viewMode = 'grouped'" 
+        :class="{ active: viewMode === 'grouped' }"
+      >
+        Grouped View
+      </button>
+    </div>
+    
+    <!-- Original flat commands view -->
+    <div v-if="viewMode === 'flat'" class="commands-container">
       <template v-if="deviceStore.currentDevice.commands && deviceStore.currentDevice.commands.length">
         <CommandButton 
           v-for="command in deviceStore.currentDevice.commands" 
@@ -24,6 +40,12 @@
         <button @click="reloadDevice" class="reload-button">Reload Device</button>
       </div>
     </div>
+    
+    <!-- Grouped commands view -->
+    <div v-else-if="viewMode === 'grouped'" class="grouped-view">
+      <GroupSelector />
+      <GroupedCommands />
+    </div>
   </div>
   <div class="device-remote empty" v-else>
     <p>Please select a device</p>
@@ -34,9 +56,12 @@
 import { ref } from 'vue';
 import { useDeviceStore } from '../store/deviceStore';
 import CommandButton from './CommandButton.vue';
+import GroupSelector from './GroupSelector.vue';
+import GroupedCommands from './GroupedCommands.vue';
 
 const deviceStore = useDeviceStore();
 const showDeviceDetails = ref(false);
+const viewMode = ref('grouped'); // Default to the new grouped view
 
 // Generate a unique key for each command
 const generateKey = (command: any) => {
