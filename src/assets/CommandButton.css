@@ -121,9 +121,39 @@ input[type="checkbox"] {
   transition: fill 0.2s;     /* Smooth color transition */
 }
 
+/* Special styling for text-based SVGs */
+.svg-button .text-based-svg {
+  width: 140px;               /* Fixed width for consistency */
+  height: 2.5rem;             /* Fixed height */
+  max-width: 100%;            /* Ensure it doesn't overflow container */
+  margin: 0 auto;             /* Center horizontally */
+}
+
 /* Hover effect for SVG icon */
 .svg-button:hover svg {
   fill: var(--accent-color); /* Change to accent color on hover */
+}
+
+/* Target individual SVG elements on hover */
+.svg-button:hover svg path {
+  fill: var(--accent-color); /* Change path fill on hover */
+  stroke: var(--accent-color); /* Change path stroke on hover */
+}
+
+/* Special case for elements with fill:none that rely only on strokes */
+.svg-button:hover svg path[fill="none"] {
+  stroke: var(--accent-color); /* Change stroke color on hover */
+  /* Keep stroke-width and fill as they are */
+  fill: none;
+}
+
+.svg-button:hover svg rect {
+  fill: var(--accent-color); /* Change rectangle fill on hover */
+  stroke: var(--accent-color); /* Change rectangle stroke on hover */
+}
+
+.svg-button:hover svg text {
+  fill: #fff; /* Keep text white for readability on color background */
 }
 
 /* Text below SVG icon */
