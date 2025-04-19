@@ -16,7 +16,7 @@
           <path v-for="(path, index) in svgData.paths" :key="index" :d="path" />
           <text v-if="svgData.text" v-bind="svgData.text">{{ svgData.text.content }}</text>
         </svg>
-        <span v-if="showButtonText">{{ props.command.description || getCommandLabel }}</span>
+        <span v-if="uiStore.showButtonText">{{ props.command.description || getCommandLabel }}</span>
       </div>
       
       <div v-if="showDetails" class="details">
@@ -25,22 +25,13 @@
       </div>
       <button v-else @click="showDetails = true" class="details-toggle">Info</button>
     </div>
-    
-    <div v-if="command.topic" class="execution-mode">
-      <label>
-        <input 
-          type="checkbox" 
-          v-model="useMqtt" 
-        />
-        Use MQTT
-      </label>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useDeviceStore } from '../store/deviceStore';
+import { useUiStore } from '../store/uiStore';
 import { svgMapping } from '../utils/svgMapping';
 
 interface Command {
@@ -57,11 +48,9 @@ const props = defineProps<{
 }>();
 
 const deviceStore = useDeviceStore();
+const uiStore = useUiStore();
 const isExecuting = ref(false);
-const useMqtt = ref(false);
 const showDetails = ref(false);
-// Global configuration for showing text below SVG
-const showButtonText = ref(true);
 
 // Computed command label
 const getCommandLabel = computed(() => {
@@ -108,8 +97,8 @@ const executeCommand = async () => {
   try {
     const command = { ...props.command };
     
-    // If MQTT is toggled on and there's a topic, only use the topic
-    if (useMqtt.value && command.topic) {
+    // Use the global MQTT setting to determine execution mode
+    if (uiStore.defaultUseMqtt && command.topic) {
       // Create a command that only has the topic property
       await deviceStore.executeCommand({ topic: command.topic });
     } else {

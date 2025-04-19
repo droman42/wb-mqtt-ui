@@ -1,51 +1,99 @@
 /* Main container for the device page with limited width and centered content */
 .device-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 1200px;         /* Constrain width for better readability on large screens */
+  margin: 0 auto;            /* Center the container horizontally */
+  padding: 20px;             /* Add space around content for better visual separation */
 }
 
 /* Page heading with dark blue color and centered alignment */
 h1 {
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
+  color: #2c3e50;            /* Dark blue color for visual hierarchy */
+  text-align: center;        /* Center align heading for symmetrical design */
+  margin-bottom: 30px;       /* Add space below heading for visual separation */
+}
+
+/* Toolbar containing device selector and UI settings - responsive layout */
+.toolbar {
+  display: flex;             /* Use flexbox for horizontal layout */
+  flex-wrap: wrap;           /* Allow wrapping on small screens for responsive design */
+  justify-content: space-between; /* Spread items to opposite ends */
+  align-items: flex-start;   /* Align items to the top for better appearance when wrapped */
+  gap: 15px;                 /* Space between toolbar items when they wrap */
+  margin-bottom: 25px;       /* Space below toolbar for separation from content */
+}
+
+/* Container for UI settings toggles with subtle background and shadow */
+.ui-settings {
+  display: flex;             /* Use flexbox for horizontal layout of toggles */
+  flex-wrap: wrap;           /* Allow toggles to wrap on small screens */
+  gap: 15px;                 /* Space between toggle options */
+  background-color: #f8f9fa; /* Light gray background for visual grouping */
+  border-radius: 8px;        /* Rounded corners for modern look */
+  padding: 12px 15px;        /* Inner spacing for comfortable reading */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth perception */
+}
+
+/* Individual UI setting toggle with interactive hover effect */
+.ui-setting-toggle {
+  display: flex;             /* Use flexbox for alignment of checkbox and label */
+  align-items: center;       /* Vertically center checkbox with label text */
+  cursor: pointer;           /* Show pointer cursor to indicate interactivity */
+  user-select: none;         /* Prevent text selection for better UX */
+  font-size: 14px;           /* Slightly smaller text for secondary UI element */
+  color: #2c3e50;            /* Dark blue text for readability */
+  padding: 5px 10px;         /* Add padding for larger hit area */
+  border-radius: 5px;        /* Rounded corners matching other UI elements */
+  transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for UI setting toggles to indicate interactivity */
+.ui-setting-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.03); /* Very subtle darkening on hover */
+}
+
+/* Custom styling for checkboxes within UI setting toggles */
+.ui-setting-toggle input[type="checkbox"] {
+  margin-right: 8px;         /* Space between checkbox and label text */
+  cursor: pointer;           /* Show pointer cursor on checkbox */
+  width: 16px;               /* Set consistent width */
+  height: 16px;              /* Set consistent height (square) */
+  accent-color: var(--accent-color, #e11d48); /* Use theme accent color for checked state */
 }
 
 /* Loading state indicator with blue text color and centered alignment */
 .loading-message {
-  text-align: center;
-  font-size: 18px;
-  padding: 20px;
-  color: #3498db;
+  text-align: center;        /* Center align text for visual balance */
+  font-size: 18px;           /* Larger font size for visibility */
+  padding: 20px;             /* Generous padding for visual emphasis */
+  color: #3498db;            /* Blue color typically associated with loading */
 }
 
 /* Debug toggle button with gray background and white text */
 .debug-button {
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 15px 0;
-  display: block;
+  background-color: #6c757d; /* Neutral gray for secondary action */
+  color: white;              /* White text for contrast against gray background */
+  border: none;              /* Remove default border for clean look */
+  padding: 8px 15px;         /* Comfortable padding for easy clickability */
+  border-radius: 5px;        /* Rounded corners matching other UI elements */
+  cursor: pointer;           /* Show pointer cursor to indicate interactivity */
+  margin: 15px 0;            /* Vertical spacing for separation from other elements */
+  display: block;            /* Make button a block element for consistent sizing */
 }
 
 /* Debug information panel with light background and bordered container */
 .debug-info {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 15px 0;
-  text-align: left;
-  color: #212529;
-  overflow-x: auto;
+  background-color: #f8f9fa; /* Light background for readability */
+  border: 1px solid #dee2e6; /* Subtle border for definition */
+  border-radius: 5px;        /* Rounded corners matching other UI elements */
+  padding: 15px;             /* Inner spacing for comfortable reading */
+  margin: 15px 0;            /* Vertical spacing for separation from other elements */
+  text-align: left;          /* Left align text for easier reading of technical info */
+  color: #212529;            /* Dark text for readability */
+  overflow-x: auto;          /* Allow horizontal scrolling for wide content */
 }
 
 /* Preformatted text styling for code and JSON data display */
 pre {
-  white-space: pre-wrap;
-  font-family: monospace;
+  white-space: pre-wrap;     /* Wrap text to fit container width */
+  font-family: monospace;    /* Monospace font for consistent character width */
 } 

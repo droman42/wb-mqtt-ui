@@ -2,7 +2,29 @@
   <div class="device-page">
     <h1>Device Testing Interface</h1>
     
-    <DeviceSelector />
+    <div class="toolbar">
+      <DeviceSelector />
+      
+      <div class="ui-settings">
+        <label class="ui-setting-toggle">
+          <input 
+            type="checkbox" 
+            v-model="uiStore.showButtonText"
+            @change="uiStore.saveSettings"
+          />
+          Show button text
+        </label>
+        
+        <label class="ui-setting-toggle">
+          <input 
+            type="checkbox" 
+            v-model="uiStore.defaultUseMqtt"
+            @change="uiStore.saveSettings"
+          />
+          Use MQTT by default
+        </label>
+      </div>
+    </div>
     
     <div v-if="isConnecting || deviceStore.isLoading" class="loading-message">
       {{ isConnecting ? 'Connecting to server...' : 'Loading data...' }}
@@ -38,6 +60,7 @@ import DeviceRemote from '../components/DeviceRemote.vue';
 import LogsPanel from '../components/LogsPanel.vue';
 import ErrorDisplay from '../components/ErrorDisplay.vue';
 import { useDeviceStore } from '../store/deviceStore';
+import { useUiStore } from '../store/uiStore';
 import { checkServerConnectivity } from '../utils/serverCheck';
 
 // Export the component for Vetur
@@ -53,6 +76,7 @@ interface ErrorInfo {
 }
 
 const deviceStore = useDeviceStore();
+const uiStore = useUiStore();
 const showDebug = ref(false);
 const error = ref<ErrorInfo | null>(null);
 const isConnecting = ref(false);
@@ -68,6 +92,10 @@ const debugInfo = computed(() => {
     currentDeviceId: deviceStore.currentDeviceId,
     isLoading: deviceStore.isLoading,
     systemConfig: deviceStore.systemConfig,
+    uiSettings: {
+      showButtonText: uiStore.showButtonText,
+      defaultUseMqtt: uiStore.defaultUseMqtt
+    },
     logs: deviceStore.logs.slice(0, 5) // Just show the first 5 logs
   };
 });

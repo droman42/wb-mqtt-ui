@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+When creating or modifying CSS files, always include detailed explanatory comments for each selector and property. Each selector should have a block comment explaining its purpose, and each property should have an inline comment describing its specific visual or functional effect. Follow the pattern of '/* Selector purpose / .selector { property: value; / property effect explanation / }'
