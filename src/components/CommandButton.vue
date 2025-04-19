@@ -15,8 +15,14 @@
           :viewBox="dynamicViewBox" 
           aria-hidden="true"
           :class="{ 'text-based-svg': svgData.text }"
+          preserveAspectRatio="xMidYMid meet"
         >
+          <!-- Single rectangle -->
           <rect v-if="svgData.rect" v-bind="svgData.rect" />
+          
+          <!-- Multiple rectangles -->
+          <rect v-for="(rect, index) in svgData.rects" :key="`rect-${index}`" v-bind="rect" />
+          
           <!-- Handle both string and object paths, explicitly binding kebab-case attributes -->
           <path 
             v-for="(path, index) in svgData.paths" 
@@ -31,11 +37,12 @@
             :x="svgData.text.x" 
             :y="svgData.text.y" 
             :fill="svgData.text.fill" 
-            :font-size="svgData.text.fontSize" 
-            :font-weight="svgData.text.fontWeight" 
-            :font-family="svgData.text.fontFamily" 
-            :text-anchor="svgData.text.textAnchor" 
-            :dominant-baseline="svgData.text.dominantBaseline"
+            :font-size="svgData.text['font-size'] || svgData.text.fontSize" 
+            :font-weight="svgData.text['font-weight'] || svgData.text.fontWeight" 
+            :font-family="svgData.text['font-family'] || svgData.text.fontFamily" 
+            :text-anchor="svgData.text['text-anchor'] || svgData.text.textAnchor" 
+            :dominant-baseline="svgData.text['dominant-baseline'] || svgData.text.dominantBaseline || 'central'"
+            alignment-baseline="central"
           >{{ svgData.text.content }}</text>
         </svg>
         <span v-if="uiStore.showButtonText">{{ props.command.description || getCommandLabel }}</span>

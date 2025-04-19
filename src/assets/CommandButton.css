@@ -2,8 +2,9 @@
 .command-button {
   margin-bottom: 10px;       /* Space between multiple buttons */
   display: flex;             /* Use flexbox for layout */
-  align-items: flex-start;   /* Align items at the top */
+  align-items: stretch;      /* Stretch items to full height */
   flex-wrap: wrap;           /* Allow wrapping on small screens */
+  width: 100%;               /* Full width */
 }
 
 /* Container for the button and details toggle */
@@ -11,6 +12,7 @@
   display: flex;             /* Use flexbox for layout */
   flex-direction: column;    /* Stack elements vertically */
   flex: 1;                   /* Take up available space */
+  min-width: 140px;          /* Match button width */
 }
 
 /* Styling for the standard text button */
@@ -98,39 +100,46 @@ input[type="checkbox"] {
   display: flex;             /* Use flexbox */
   flex-direction: column;    /* Stack elements vertically */
   align-items: center;       /* Center items horizontally */
-  padding: 1.5rem 0.75rem;   /* Inner spacing - more vertical than horizontal */
+  justify-content: center;   /* Center content vertically */
+  padding: 1.5rem 1rem;      /* Increased horizontal padding */
   background-color: var(--button-background); /* White background from variables */
   border-radius: 12px;       /* Rounded corners */
   box-shadow: 0 2px 6px var(--button-shadow); /* Subtle shadow for depth */
-  transition: transform 0.15s, box-shadow 0.15s; /* Smooth transitions for hover */
-  min-width: 120px;          /* Minimum button width */
+  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
+  min-width: 140px;          /* Increased minimum button width */
+  height: 100%;              /* Take full height */
+  text-align: center;        /* Center text content */
+  position: relative;        /* Create positioning context */
 }
 
 /* Hover effect for SVG button */
 .svg-button:hover {
-  transform: translateY(-3px); /* Move up slightly */
-  box-shadow: 0 4px 10px var(--button-hover-shadow); /* Stronger shadow */
+  transform: translateY(-3px) scale(1.03); /* Move up and scale slightly */
+  box-shadow: 0 6px 12px var(--button-hover-shadow); /* Stronger shadow */
 }
 
-/* SVG icon styling */
+/* SVG icon container */
 .svg-button svg {
-  width: 2.5rem;             /* Icon width */
-  height: 2.5rem;            /* Icon height */
+  width: 3rem;               /* Increased icon width */
+  height: 3rem;              /* Increased icon height */
   fill: var(--foreground-color); /* Dark fill from variables */
-  margin-bottom: 0.5rem;     /* Space below icon */
-  transition: fill 0.2s;     /* Smooth color transition */
+  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
+  display: block;            /* Block display for proper centering */
+  position: relative;        /* Use relative positioning */
+  margin: 0 auto 0.75rem;    /* Increased bottom margin */
+  overflow: visible;         /* Allow content to overflow */
 }
 
 /* Special styling for text-based SVGs */
 .svg-button .text-based-svg {
   width: 140px;               /* Fixed width for consistency */
-  height: 2.5rem;             /* Fixed height */
+  height: 3rem;               /* Match the standard SVG height */
   max-width: 100%;            /* Ensure it doesn't overflow container */
-  margin: 0 auto;             /* Center horizontally */
 }
 
-/* Hover effect for SVG icon */
+/* Hover effect - make SVG slightly larger on hover */
 .svg-button:hover svg {
+  transform: scale(1.05);    /* Grow slightly on hover */
   fill: var(--accent-color); /* Change to accent color on hover */
 }
 

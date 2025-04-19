@@ -13,15 +13,50 @@ const createTextButtonSVG = (content: string) => ({
   text: {
     x: "50%", 
     y: "50%", 
-    fontSize: 14, 
-    fontWeight: 700, 
-    fontFamily: "Arial,Helvetica,sans-serif",
+    "font-size": 14, 
+    "font-weight": 700, 
+    "font-family": "Arial,Helvetica,sans-serif",
     fill: "#fff", 
-    textAnchor: "middle", 
-    dominantBaseline: "middle", 
+    "text-anchor": "middle", 
+    "dominant-baseline": "middle", 
     content
   }
 });
+
+// Create a shared template for aspect ratio buttons
+const createRatioButtonSVG = (ratio: string) => {
+  // Parse the ratio string (e.g., "16:9", "4:3")
+  const [width, height] = ratio.split(':').map(Number);
+  
+  // Calculate dimensions that maintain the aspect ratio
+  const rectWidth = 20;
+  const rectHeight = rectWidth * (height / width);
+  
+  return {
+    viewBox: "0 0 24 24",
+    rect: { 
+      x: (24 - rectWidth) / 2, // Center horizontally
+      y: (24 - rectHeight) / 2, // Center vertically
+      width: rectWidth, 
+      height: rectHeight, 
+      rx: 2, 
+      ry: 2, 
+      stroke: "#000", 
+      "stroke-width": 2, 
+      fill: "none" 
+    },
+    text: { 
+      x: 12, 
+      y: 12, 
+      "font-size": 5, 
+      "text-anchor": "middle", 
+      "dominant-baseline": "middle", 
+      fill: "#000", 
+      "font-weight": 700, 
+      content: ratio
+    }
+  };
+};
 
 export const svgMapping: Record<string, any> = {
   power: {
@@ -63,6 +98,41 @@ export const svgMapping: Record<string, any> = {
   mute: {
     paths: ["M3 9v6h4l5 5V4L7 9H3z", {"stroke-width": 2, stroke: "#000", d: "M16 6L6 18"}]
   },
+  letterbox: {
+    viewBox: "0 0 24 24",
+    rects: [
+      // Main rectangle frame
+      { 
+        x: 2, 
+        y: 6, 
+        width: 20, 
+        height: 12, 
+        rx: 2, 
+        ry: 2, 
+        stroke: "#000", 
+        "stroke-width": 2, 
+        fill: "none" 
+      },
+      // Top bar
+      { 
+        x: 2, 
+        y: 6, 
+        width: 20, 
+        height: 3, 
+        fill: "#000" 
+      },
+      // Bottom bar
+      { 
+        x: 2, 
+        y: 15, 
+        width: 20, 
+        height: 3, 
+        fill: "#000" 
+      }
+    ]
+  },
+  ratio_16_9: createRatioButtonSVG("16:9"),
+  ratio_4_3: createRatioButtonSVG("4:3"),
   audio: createTextButtonSVG("AUDIO"),
   subtitles: createTextButtonSVG("SUBTITLES"),
   cd: createTextButtonSVG("CD"),
@@ -76,5 +146,7 @@ export const svgMapping: Record<string, any> = {
   zappiti: createTextButtonSVG("ZAPPITI"),
   apple_tv: createTextButtonSVG("APPLE TV"),
   dvdo: createTextButtonSVG("DVDO"),
+  input_video: createTextButtonSVG("COMPOSITE"),
+  input_s_vhs: createTextButtonSVG("S-VHS"),
   // Add more mappings as needed
 }; 
