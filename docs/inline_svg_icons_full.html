@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Inline‑SVG Remote‑Control Icon Library</title>
+<style>
+    :root{
+        --bg:#f9fafb;
+        --fg:#111;
+        --accent:#e11d48;
+    }
+    *{box-sizing:border-box}
+    body{
+        margin:0;
+        font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+        background:var(--bg);
+        color:var(--fg);
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding:2rem 1rem;
+        gap:2rem;
+    }
+    h1{
+        margin:0;
+        font-size:clamp(1.75rem,2vw+1rem,2.5rem);
+        text-align:center;
+    }
+    .grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+        gap:1.5rem;
+        width:100%;
+        max-width:840px;
+    }
+    .icon-item{
+        background:#fff;
+        border-radius:12px;
+        box-shadow:0 2px 6px rgb(0 0 0 / .07);
+        padding:1.5rem 0.75rem;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        transition:transform .15s, box-shadow .15s;
+    }
+    .icon-item:hover{
+        transform:translateY(-3px);
+        box-shadow:0 4px 10px rgb(0 0 0 / .12);
+    }
+    svg{
+        width:2.5rem;
+        height:2.5rem;
+        fill:var(--fg);
+        margin-bottom:.5rem;
+        transition:fill .2s;
+    }
+    .icon-item:hover svg{
+        fill:var(--accent);
+    }
+    span{
+        font-size:.9rem;
+        user-select:none;
+        text-align:center;
+    }
+</style>
+</head>
+<body>
+    <h1>Inline‑SVG Remote‑Control Icon Library</h1>
+    <div class="grid">
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5L19 12L8 19Z"/></svg><span>Play</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5H10V19H6Z"/><path d="M14 5H18V19H14Z"/></svg><span>Pause</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12"/></svg><span>Stop</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5L11 12L4 19Z"/><path d="M11 5L18 12L11 19Z"/></svg><span>Fast‑Forward</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5L13 12L20 19Z"/><path d="M13 5L6 12L13 19Z"/></svg><span>Rewind</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5L14 12L5 19Z"/><rect x="16" y="5" width="3" height="14"/></svg><span>Skip Next</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="3" height="14"/><path d="M19 5L10 12L19 19Z"/></svg><span>Skip Prev</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14L12 6L20 14Z"/><rect x="5" y="16" width="14" height="3"/></svg><span>Eject</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/></svg><span>Record</span></div>
+        <div class="icon-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10h-2z"/><path d="M17.83 7.17l-1.42-1.42A7.007 7.007 0 0 1 19 11.5c0 3.86-3.14 7-7 7s-7-3.14-7-7a7.007 7.007 0 0 1 2.59-5.39L5.17 7.17A8.997 8.997 0 0 0 3 11.5c0 4.97 4.03 9 9 9s9-4.03 9-9a8.997 8.997 0 0 0-3.17-6.83z"/></svg><span>Power</span></div>
+    </div>
+</body>
+</html>

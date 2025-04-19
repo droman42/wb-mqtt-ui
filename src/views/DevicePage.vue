@@ -32,13 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed, watch } from 'vue';
+import { onMounted, ref, computed, watch, defineComponent } from 'vue';
 import DeviceSelector from '../components/DeviceSelector.vue';
 import DeviceRemote from '../components/DeviceRemote.vue';
 import LogsPanel from '../components/LogsPanel.vue';
 import ErrorDisplay from '../components/ErrorDisplay.vue';
 import { useDeviceStore } from '../store/deviceStore';
 import { checkServerConnectivity } from '../utils/serverCheck';
+
+// Export the component for Vetur
+defineComponent({
+  name: 'DevicePage'
+});
 
 // Define error type
 interface ErrorInfo {

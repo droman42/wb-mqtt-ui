@@ -100,8 +100,9 @@ defineEmits<{
   (e: 'retry'): void;
 }>();
 
+// Use a hardcoded value to avoid import.meta
 const apiBaseUrl = computed(() => {
-  return import.meta.env.VITE_API_BASE_URL || '/api';
+  return 'http://localhost:8000';
 });
 
 // Ensure props is used - use it for a helpful computed property
