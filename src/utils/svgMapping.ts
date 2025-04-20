@@ -102,34 +102,53 @@ export const svgMapping: Record<string, any> = {
     viewBox: "0 0 24 24",
     rects: [
       // Main rectangle frame
-      { 
-        x: 2, 
-        y: 6, 
-        width: 20, 
-        height: 12, 
-        rx: 2, 
-        ry: 2, 
-        stroke: "#000", 
-        "stroke-width": 2, 
-        fill: "none" 
-      },
+      { x: 2, y: 6, width: 20, height: 12, rx: 2, ry: 2, stroke: "#000", "stroke-width": 2, fill: "none" },
       // Top bar
-      { 
-        x: 2, 
-        y: 6, 
-        width: 20, 
-        height: 3, 
-        fill: "#000" 
-      },
+      { x: 2, y: 6, width: 20, height: 3, fill: "#000" },
       // Bottom bar
-      { 
-        x: 2, 
-        y: 15, 
-        width: 20, 
-        height: 3, 
-        fill: "#000" 
-      }
+      { x: 2, y: 15, width: 20, height: 3, fill: "#000" }
     ]
+  },
+  menu_up: {
+    viewBox: "0 0 100 100",
+    paths: [
+      { d: "M10 80 L50 20 L90 80 Z", fill: "#cfd2d6", stroke: "#666", "stroke-width": 2 }
+    ],
+    polygons: [
+      { points: "50,35 60,60 40,60", fill: "#000" }
+    ]
+  },
+  menu_left: {
+    viewBox: "0 0 100 100",
+    paths: [
+      { d: "M80 10 L20 50 L80 90 Z", fill: "#cfd2d6", stroke: "#666", "stroke-width": 2 }
+    ],
+    polygons: [
+      { points: "35,50 60,60 60,40", fill: "#000" }
+    ]
+  },
+  menu_right: {
+    viewBox: "0 0 100 100",
+    paths: [
+      { d: "M20 10 L80 50 L20 90 Z", fill: "#cfd2d6", stroke: "#666", "stroke-width": 2 }
+    ],
+    polygons: [
+      { points: "65,50 40,40 40,60", fill: "#000" }
+    ]
+  },
+  menu_down: {
+    viewBox: "0 0 100 100",
+    paths: [
+      { d: "M10 20 L90 20 L50 80 Z", fill: "#cfd2d6", stroke: "#666", "stroke-width": 2 }
+    ],
+    polygons: [
+      { points: "40,40 60,40 50,65", fill: "#000" }
+    ]
+  },
+  menu_ok: {
+    viewBox: "0 0 100 100",
+    circle: { cx: 50, cy: 50, r: 45, fill: "#cfd2d6", stroke: "#666", "stroke-width": 2 },
+    text: { x: 50, y: 55, "font-family": "Arial,Helvetica,sans-serif", "font-size": 28, "font-weight": 700, fill: "#000", "text-anchor": "middle", content: "OK" }
   },
   ratio_16_9: createRatioButtonSVG("16:9"),
   ratio_4_3: createRatioButtonSVG("4:3"),

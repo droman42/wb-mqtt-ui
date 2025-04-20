@@ -23,6 +23,12 @@
           <!-- Multiple rectangles -->
           <rect v-for="(rect, index) in svgData.rects" :key="`rect-${index}`" v-bind="rect" />
           
+          <!-- Circle element -->
+          <circle v-if="svgData.circle" v-bind="svgData.circle" />
+          
+          <!-- Multiple circles -->
+          <circle v-for="(circle, index) in svgData.circles" :key="`circle-${index}`" v-bind="circle" />
+          
           <!-- Handle both string and object paths, explicitly binding kebab-case attributes -->
           <path 
             v-for="(path, index) in svgData.paths" 
@@ -33,6 +39,18 @@
             :fill="typeof path === 'object' ? path.fill : null"
             :opacity="typeof path === 'object' ? path.opacity : null"
           />
+          
+          <!-- Polygon elements -->
+          <polygon
+            v-for="(polygon, index) in svgData.polygons"
+            :key="`polygon-${index}`"
+            :points="polygon.points"
+            :fill="polygon.fill"
+            :stroke="polygon.stroke"
+            :stroke-width="polygon['stroke-width']"
+            :opacity="polygon.opacity"
+          />
+          
           <text v-if="svgData.text" 
             :x="svgData.text.x" 
             :y="svgData.text.y" 

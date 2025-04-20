@@ -149,8 +149,22 @@ input[type="checkbox"] {
   stroke: var(--accent-color); /* Change path stroke on hover */
 }
 
+/* Add hover styles for polygon elements */
+.svg-button:hover svg polygon {
+  fill: var(--accent-color); /* Change polygon fill on hover */
+  stroke: var(--accent-color); /* Change polygon stroke on hover */
+}
+
+/* Add hover styles for circle elements */
+.svg-button:hover svg circle {
+  fill: var(--accent-color); /* Change circle fill on hover */
+  stroke: var(--accent-color); /* Change circle stroke on hover */
+}
+
 /* Special case for elements with fill:none that rely only on strokes */
-.svg-button:hover svg path[fill="none"] {
+.svg-button:hover svg path[fill="none"],
+.svg-button:hover svg polygon[fill="none"],
+.svg-button:hover svg circle[fill="none"] {
   stroke: var(--accent-color); /* Change stroke color on hover */
   /* Keep stroke-width and fill as they are */
   fill: none;

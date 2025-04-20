@@ -166,6 +166,43 @@ The application is organized into several components:
 
 State management is handled through Pinia store, with API services for communication.
 
+### SVG Button Support
+
+The application supports SVG-based buttons for a modern, customizable UI. Command buttons can automatically render as SVG icons based on their action names. The following SVG element types are supported:
+
+- **paths**: Both simple string paths and object paths with attributes 
+- **rects**: Single rectangle or multiple rectangles (as array)
+- **polygons**: For complex shapes
+- **circles**: Single circle or multiple circles (as array)
+- **text**: For text-based buttons
+
+SVG buttons are defined in the `svgMapping.ts` file and mapped to command actions. To add new SVG icons, simply extend the mapping with new entries following the established pattern.
+
+Example of a complex SVG mapping with multiple element types:
+```javascript
+menu_ok: {
+  viewBox: "0 0 100 100",
+  circle: {
+    cx: 50,
+    cy: 50,
+    r: 45,
+    fill: "#cfd2d6",
+    stroke: "#666",
+    "stroke-width": 2
+  },
+  text: {
+    x: 50,
+    y: 55,
+    "font-family": "Arial,Helvetica,sans-serif",
+    "font-size": 28,
+    "font-weight": 700,
+    fill: "#000",
+    "text-anchor": "middle",
+    content: "OK"
+  }
+}
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
