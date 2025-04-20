@@ -25,39 +25,4 @@ const selectGroup = async (groupId: string) => {
 };
 </script>
 
-<style>
-.group-selector {
-  margin-bottom: 1rem;
-}
-
-.groups-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.groups-container button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.groups-container button:hover {
-  background-color: #e0e0e0;
-}
-
-.groups-container button.active {
-  background-color: #007bff;
-  color: white;
-  border-color: #0069d9;
-}
-
-.groups-container button.no-actions {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-</style> 
+<style src="../assets/GroupSelector.css" scoped></style> 

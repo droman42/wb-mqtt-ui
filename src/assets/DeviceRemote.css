@@ -13,6 +13,7 @@
   margin-bottom: 1rem;
   color: #333;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 /* Styling for empty state when no device is selected */
@@ -20,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  min-height: 150px;
   color: #6c757d;
   font-style: italic;
 }
@@ -30,6 +31,7 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e0e0e0;
+  text-align: center;
 }
 
 .device-info p {
@@ -90,46 +92,9 @@
   background-color: #0069d9;
 }
 
-/* View switcher */
-.view-switcher {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.view-switcher button {
-  padding: 0.5rem 1rem;
-  background-color: #e9ecef;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  color: #495057;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.view-switcher button:hover {
-  background-color: #dee2e6;
-}
-
-.view-switcher button.active {
-  background-color: #007bff;
-  color: white;
-  border-color: #0069d9;
-}
-
-/* Grouped view */
+/* Grouped view container */
 .grouped-view {
   margin-top: 1rem;
-}
-
-/* Grid layout for command buttons */
-.commands-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem; /* Space between buttons */
-  justify-content: flex-start;
 }
 
 /* Empty state when no commands are available */

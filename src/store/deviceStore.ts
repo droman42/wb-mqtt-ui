@@ -66,6 +66,18 @@ export const useDeviceStore = defineStore('device', {
       return state.deviceGroups[state.currentDeviceId] || [];
     },
     
+    sortedDeviceGroups: (state) => {
+      if (!state.currentDeviceId) return [];
+      const groups = [...(state.deviceGroups[state.currentDeviceId] || [])];
+      
+      // Sort groups with 'default' group last
+      return groups.sort((a, b) => {
+        if (a.group_id === 'default') return 1;
+        if (b.group_id === 'default') return -1;
+        return a.group_name.localeCompare(b.group_name);
+      });
+    },
+    
     currentGroupCommands: (state) => {
       if (!state.currentDeviceId || !state.currentGroupId) return [];
       
@@ -122,20 +134,21 @@ export const useDeviceStore = defineStore('device', {
       try {
         const response = await apiService.getDeviceGroups(deviceId);
         this.deviceGroups[deviceId] = response.groups || [];
+        
+        // Load actions for all groups immediately
+        const groups = this.deviceGroups[deviceId] || [];
+        
+        // Create an array of promises for loading all group actions
+        const loadPromises = groups.map(group => 
+          this.loadGroupActions(deviceId, group.group_id)
+        );
+        
+        // Wait for all groups to load their actions
+        await Promise.all(loadPromises);
+        
         this.isLoading = false;
         this.addLog(`Loaded groups for device: ${deviceId}`, true);
         
-        // If this is the first time loading groups for this device,
-        // auto-select the first group that has actions
-        if (this.currentDeviceId === deviceId && !this.currentGroupId) {
-          const firstGroupWithActions = this.deviceGroups[deviceId]?.find(
-            group => group.actions && group.actions.length > 0
-          );
-          
-          if (firstGroupWithActions) {
-            this.currentGroupId = firstGroupWithActions.group_id;
-          }
-        }
       } catch (error) {
         this.addLog(`Failed to load device groups for ${deviceId}: ${error}`, false);
         this.isLoading = false;

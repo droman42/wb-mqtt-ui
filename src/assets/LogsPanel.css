@@ -1,34 +1,40 @@
-/* Container for the logs panel with light background and subtle shadow */
+/* Container for the logs panel designed to look like a remote control display */
 .logs-panel {
-  margin-top: 30px;           /* Space above the panel */
-  background-color: #f5f5f5;  /* Light gray background */
+  background-color: #f0f0f0;  /* Light gray background */
   border-radius: 8px;         /* Rounded corners */
-  padding: 20px;              /* Inner spacing */
+  padding: 15px;              /* Inner spacing */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: 1px solid #ddd;     /* Thin border */
 }
 
-/* Panel heading with bottom border */
+/* Panel heading styled like a remote control label */
 h3 {
   margin-top: 0;              /* Remove top margin */
   margin-bottom: 15px;        /* Space below heading */
   color: #2c3e50;             /* Dark blue color */
   border-bottom: 1px solid #ddd; /* Light border below heading */
   padding-bottom: 10px;       /* Space below text */
+  text-align: center;         /* Center align for remote control style */
+  font-size: 1.1rem;          /* Slightly smaller heading */
 }
 
-/* Scrollable container for log entries with fixed height */
+/* Scrollable container for log entries with fixed height, styled like a display screen */
 .logs-container {
-  max-height: 300px;          /* Limit height and enable scrolling */
+  max-height: 200px;          /* Limit height and enable scrolling */
   overflow-y: auto;           /* Vertical scrollbar when needed */
   font-family: monospace;     /* Monospace font for consistent spacing */
+  background-color: #f8f8f8;  /* Lighter background for the "display" */
+  border-radius: 4px;         /* Rounded corners */
+  border: 1px solid #e0e0e0;  /* Subtle border */
 }
 
 /* Individual log entry styling */
 .log-entry {
-  padding: 2px 10px;          /* Reduced vertical padding from 8px to 4px */
+  padding: 4px 10px;          /* Comfortable padding */
   border-bottom: 1px solid #eee; /* Light separator between entries */
-  font-size: 14px;            /* Slightly smaller text */
+  font-size: 12px;            /* Smaller text for display look */
   display: flex;              /* Use flexbox for layout */
+  line-height: 1.4;           /* Tighter line height */
 }
 
 /* Remove border from last entry to avoid double borders */
@@ -48,13 +54,13 @@ h3 {
 
 /* Timestamp section of log entry */
 .timestamp {
-  min-width: 90px;            /* Minimum width to accommodate most timestamps */
+  min-width: 70px;            /* Smaller minimum width */
   white-space: nowrap;        /* Prevent timestamp from wrapping */
   text-overflow: ellipsis;    /* Show ellipsis for very long timestamps */
   overflow: hidden;           /* Hide overflow content */
   color: #7f8c8d;             /* Gray color */
   margin-right: 10px;         /* Space after timestamp */
-  padding-right: 5px;         /* Additional padding between timestamp and message */
+  font-size: 0.9em;           /* Slightly smaller font */
 }
 
 /* Message content of log entry */
@@ -68,6 +74,7 @@ h3 {
 .empty-log {
   color: #7f8c8d;             /* Gray text color */
   font-style: italic;         /* Italic text for emphasis */
-  padding: 15px 0;            /* Vertical padding */
+  padding: 10px 0;            /* Vertical padding */
   text-align: center;         /* Center text */
+  font-size: 0.9em;           /* Slightly smaller font */
 } 

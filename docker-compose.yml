@@ -2,35 +2,49 @@ version: '3'
 
 services:
   mqtt-ui:
+    image: mqtt-ui:latest
+    # For development only - use pre-built image for Wirenboard deployment
     build:
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped
     ports:
       - "8080:80"
     environment:
-      - API_HOST=api-server
-      - API_PORT=8000
-      - API_PROTOCOL=http
+      - API_HOST=${API_HOST:-localhost}
+      - API_PORT=${API_PORT:-8123}
+      - API_PROTOCOL=${API_PROTOCOL:-http}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Remove the non-existent service dependency
+    # depends_on:
+    #   - api-server
     networks:
       - mqtt-network
-    depends_on:
-      - api-server
+    labels:
+      - "com.wirenboard.description=MQTT UI Frontend"
 
-  # Example API server (replace with your actual backend)
-  api-server:
-    image: your-api-image:latest
-    # If you have a custom Dockerfile for your API, uncomment the following lines
-    # build:
-    #   context: ./api
-    #   dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    networks:
-      - mqtt-network
-    # Add any environment variables your API needs
-    # environment:
-    #   - MQTT_BROKER=mqtt-broker
-    #   - MQTT_PORT=1883
+  # For Wirenboard deployment, you'll typically connect to services already running
+  # on the device rather than spinning up containers for them.
+  # If you do need additional containers, define them here.
+
+  # Example: Include Mosquitto MQTT broker if needed
+  # mqtt-broker:
+  #   image: arm32v7/eclipse-mosquitto:2.0
+  #   restart: unless-stopped
+  #   ports:
+  #     - "1883:1883"
+  #   volumes:
+  #     - /mnt/data/mosquitto/config:/mosquitto/config
+  #     - /mnt/data/mosquitto/data:/mosquitto/data
+  #     - /mnt/data/mosquitto/log:/mosquitto/log
+  #   networks:
+  #     - mqtt-network
 
 networks:
   mqtt-network:

@@ -1,0 +1,40 @@
+/* Main container for group selector section */
+.group-selector {
+  margin-bottom: 1rem; /* Add space below the component to separate it from other elements */
+}
+
+/* Container for group buttons with flex layout */
+.groups-container {
+  display: flex; /* Use flexbox for responsive button arrangement */
+  flex-wrap: wrap; /* Allow buttons to wrap to next line when container width is insufficient */
+  gap: 0.5rem; /* Consistent spacing between group buttons */
+  margin-top: 0.5rem; /* Space between heading and buttons */
+}
+
+/* Individual group selection buttons */
+.groups-container button {
+  padding: 0.5rem 1rem; /* Inner spacing for comfortable button size */
+  border: 1px solid #ccc; /* Light gray border for visual definition */
+  border-radius: 4px; /* Rounded corners for modern appearance */
+  background-color: #f5f5f5; /* Light gray background for neutral appearance */
+  cursor: pointer; /* Change cursor to pointer to indicate clickable element */
+  transition: all 0.2s; /* Smooth transition for hover and active states */
+}
+
+/* Hover state for group buttons */
+.groups-container button:hover {
+  background-color: #e0e0e0; /* Slightly darker background on hover for visual feedback */
+}
+
+/* Active/selected state for group buttons */
+.groups-container button.active {
+  background-color: #007bff; /* Blue background to indicate selection */
+  color: white; /* White text for contrast against blue background */
+  border-color: #0069d9; /* Darker blue border to enhance visual definition */
+}
+
+/* Disabled state for buttons with no actions */
+.groups-container button.no-actions {
+  opacity: 0.5; /* Reduce opacity to indicate disabled state */
+  cursor: not-allowed; /* Change cursor to indicate button cannot be clicked */
+} 

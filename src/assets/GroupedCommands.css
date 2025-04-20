@@ -1,0 +1,127 @@
+/* Main container for grouped commands section */
+.grouped-commands {
+  margin-top: 1rem; /* Add space above the component to separate it from other elements */
+}
+
+/* Main grid container with exactly 4 cells per row */
+.command-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns */
+  gap: 1rem; /* Gap between all grid items */
+  width: 100%; /* Full width of container */
+}
+
+/* Individual group container with border and rounded corners */
+.group-container {
+  position: relative; /* For absolute positioning of the group name */
+  border: 1px solid #ddd; /* Thin border around the group */
+  border-radius: 12px; /* Rounded corners for a modern look */
+  padding: 1.5rem 1rem 1rem; /* Padding inside the group container */
+  margin-top: 1rem; /* Space for the group name that breaks the border */
+  min-width: 0; /* Prevent content from forcing the grid item wider */
+}
+
+/* Span classes for different group sizes */
+.group-container.span-1 {
+  grid-column: span 1; /* Take up 1 column */
+}
+
+.group-container.span-2 {
+  grid-column: span 2; /* Take up 2 columns */
+}
+
+.group-container.span-3 {
+  grid-column: span 3; /* Take up 3 columns */
+}
+
+.group-container.span-4 {
+  grid-column: span 4; /* Take up 4 columns (full row) */
+}
+
+/* Group name label that breaks the border line */
+.group-name {
+  position: absolute; /* Position on top of the border */
+  top: -0.8rem; /* Position to break the border */
+  left: 1rem; /* Horizontal position */
+  background-color: #f8f9fa; /* Match the background color of the parent container */
+  padding: 0 0.5rem; /* Horizontal padding to create space around text */
+  font-weight: bold; /* Bold text for the group name */
+  color: #333; /* Dark text color for readability */
+  font-size: 1rem; /* Font size for the group name */
+  white-space: nowrap; /* Prevent wrapping of group name */
+  max-width: calc(100% - 2rem); /* Prevent overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Commands container within a group */
+.group-commands {
+  display: grid; /* Use CSS grid for precise layout */
+  grid-template-columns: repeat(auto-fill, minmax(0, 1fr)); /* Auto-fill columns based on available space */
+  gap: 0.75rem; /* Gap between buttons */
+  width: 100%; /* Full width of the container */
+}
+
+/* Adjust the command layout based on the span */
+.span-1 .group-commands {
+  grid-template-columns: 1fr; /* Single column for 1-cell groups */
+}
+
+.span-2 .group-commands {
+  grid-template-columns: repeat(2, 1fr); /* 2 columns for 2-cell groups */
+}
+
+.span-3 .group-commands {
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for 3-cell groups */
+}
+
+.span-4 .group-commands {
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for 4-cell groups */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .command-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+  }
+  
+  /* Override spans on small screens */
+  .group-container.span-3, .group-container.span-4 {
+    grid-column: span 2; /* Maximum 2 columns on small screens */
+  }
+  
+  /* Adjust command layouts for small screens */
+  .span-3 .group-commands, .span-4 .group-commands {
+    grid-template-columns: repeat(2, 1fr); /* Max 2 columns for commands on small screens */
+  }
+}
+
+/* Style for the button in the grid */
+.grid-button {
+  width: 100%; /* Take full width of grid cell */
+  aspect-ratio: 1; /* Square aspect ratio for buttons */
+}
+
+/* Empty group styling */
+.empty-group {
+  opacity: 0.7; /* Reduce opacity for empty groups */
+}
+
+/* Message when no commands are available in a group */
+.no-commands {
+  grid-column: 1 / -1; /* Span all columns */
+  padding: 1rem; /* Padding for the message */
+  text-align: center; /* Center the text */
+  color: #666; /* Medium gray for secondary information */
+  font-style: italic; /* Italic text for emphasis */
+}
+
+/* Message when no groups are available */
+.no-groups {
+  padding: 2rem; /* Padding for the message */
+  text-align: center; /* Center the text */
+  color: #666; /* Medium gray for secondary information */
+  background-color: #f5f5f5; /* Light gray background */
+  border-radius: 8px; /* Rounded corners */
+  margin-top: 1rem; /* Space above */
+} 

@@ -1,22 +1,34 @@
 <template>
   <div class="grouped-commands">
-    <div v-if="deviceStore.currentGroupId" class="group-commands">
-      <h3>{{ currentGroupName }}</h3>
-      <div class="commands-container">
-        <template v-if="deviceStore.currentGroupCommands.length">
-          <CommandButton 
-            v-for="command in deviceStore.currentGroupCommands" 
-            :key="generateKey(command)" 
-            :command="command"
-          />
-        </template>
-        <div v-else class="no-commands">
-          <p>No commands available in this group</p>
+    <div v-if="filteredGroups.length" class="command-grid">
+      <template v-for="group in filteredGroups" :key="group.group_id">
+        <!-- Group container that spans only the needed columns -->
+        <div 
+          class="group-container"
+          :class="[
+            `span-${Math.min(4, group.actions?.length || 1)}`,
+            { 'empty-group': !group.actions || !group.actions.length }
+          ]"
+        >
+          <span class="group-name">{{ group.group_name }}</span>
+          <div class="group-commands">
+            <template v-if="group.actions && group.actions.length">
+              <CommandButton 
+                v-for="command in group.actions" 
+                :key="generateKey(command)" 
+                :command="command"
+                class="grid-button"
+              />
+            </template>
+            <div v-else class="no-commands">
+              <p>No commands available in this group</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
-    <div v-else class="no-group-selected">
-      <p>Please select a command group</p>
+    <div v-else class="no-groups">
+      <p>No command groups available for this device</p>
     </div>
   </div>
 </template>
@@ -28,14 +40,15 @@ import CommandButton from './CommandButton.vue';
 
 const deviceStore = useDeviceStore();
 
-// Get the name of the currently selected group
-const currentGroupName = computed(() => {
-  if (!deviceStore.currentDeviceId || !deviceStore.currentGroupId) return '';
-  
-  const groups = deviceStore.deviceGroups[deviceStore.currentDeviceId] || [];
-  const currentGroup = groups.find(g => g.group_id === deviceStore.currentGroupId);
-  
-  return currentGroup?.group_name || '';
+// Filter groups to hide empty 'default' group
+const filteredGroups = computed(() => {
+  return deviceStore.sortedDeviceGroups.filter(group => {
+    // Hide default group if it has no actions
+    if (group.group_id === 'default' && (!group.actions || group.actions.length === 0)) {
+      return false;
+    }
+    return true;
+  });
 });
 
 // Generate a unique key for each command
@@ -47,31 +60,4 @@ const generateKey = (command: any) => {
 };
 </script>
 
-<style>
-.grouped-commands {
-  margin-top: 1rem;
-}
-
-.group-commands {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 1rem;
-  background-color: #f9f9f9;
-}
-
-.commands-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.no-commands, .no-group-selected {
-  padding: 1rem;
-  text-align: center;
-  color: #666;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-  margin-top: 1rem;
-}
-</style> 
+<style src="../assets/GroupedCommands.css" scoped></style> 

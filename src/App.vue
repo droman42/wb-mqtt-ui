@@ -168,11 +168,10 @@ onMounted(async () => {
     
     <main>
       <DeviceRemote />
+      <div class="remote-logs">
+        <LogsPanel />
+      </div>
     </main>
-    
-    <aside>
-      <LogsPanel />
-    </aside>
   </div>
 </template>
 
@@ -188,21 +187,16 @@ body {
 }
 
 #app {
-  display: grid;
-  grid-template-areas:
-    "header header"
-    "main aside";
-  grid-template-columns: 1fr 300px;
-  grid-template-rows: auto 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
-  max-width: 1200px;
+  max-width: 768px; /* Optimized for iPad vertical layout */
   margin: 0 auto;
   min-height: 100vh;
 }
 
 header {
-  grid-area: header;
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
@@ -236,7 +230,6 @@ header h1 {
 }
 
 .loading-message {
-  grid-area: main;
   padding: 1rem;
   background-color: #f8f9fa;
   border: 1px solid #e0e0e0;
@@ -247,11 +240,15 @@ header h1 {
 }
 
 main {
-  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-aside {
-  grid-area: aside;
+.remote-logs {
+  margin-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 1rem;
 }
 
 @media (max-width: 768px) {
