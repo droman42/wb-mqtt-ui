@@ -40,6 +40,12 @@
   color: #495057;
 }
 
+/* Position information styling for better visibility */
+.device-info p strong {
+  font-weight: 600;
+  color: #343a40;
+}
+
 /* Expanded details section for device information */
 .device-details {
   margin-top: 1rem;

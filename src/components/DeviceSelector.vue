@@ -8,7 +8,7 @@
     >
       <option value="" disabled>-- Select a device --</option>
       <option 
-        v-for="deviceId in deviceStore.devices" 
+        v-for="deviceId in deviceStore.sortedDevices" 
         :key="deviceId" 
         :value="deviceId"
       >

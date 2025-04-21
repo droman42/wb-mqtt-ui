@@ -4,6 +4,7 @@
     
     <div class="device-info">
       <p><strong>Device ID:</strong> {{ deviceStore.currentDeviceId }}</p>
+      <p v-if="deviceStore.currentDevice.position !== undefined"><strong>Position:</strong> {{ deviceStore.currentDevice.position }}</p>
       <div v-if="showDeviceDetails" class="device-details">
         <pre>{{ JSON.stringify(deviceStore.currentDevice, null, 2) }}</pre>
         <button @click="showDeviceDetails = false" class="toggle-button">Hide Details</button>

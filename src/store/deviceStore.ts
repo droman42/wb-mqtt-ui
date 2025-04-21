@@ -20,6 +20,7 @@ interface DeviceConfig {
   id: string;
   name: string;
   commands: Command[];
+  position?: string;
 }
 
 interface Command {
@@ -64,6 +65,24 @@ export const useDeviceStore = defineStore('device', {
     deviceGroupsList: (state) => {
       if (!state.currentDeviceId) return [];
       return state.deviceGroups[state.currentDeviceId] || [];
+    },
+    
+    sortedDevices: (state) => {
+      // Create an array of objects with deviceId and position
+      const devicesWithPosition = state.devices.map(deviceId => ({
+        deviceId,
+        position: state.deviceConfigs[deviceId]?.position ?? ""
+      }));
+      
+      // Sort by position as string, then by deviceId as fallback
+      return devicesWithPosition
+        .sort((a, b) => {
+          if (a.position === b.position) {
+            return a.deviceId.localeCompare(b.deviceId);
+          }
+          return a.position.localeCompare(b.position);
+        })
+        .map(device => device.deviceId);
     },
     
     sortedDeviceGroups: (state) => {
@@ -200,6 +219,9 @@ export const useDeviceStore = defineStore('device', {
             // Try to get name from device_name if it exists
             config.name = config.device_name || deviceId;
           }
+          
+          // Handle position if it exists, keep as string
+          // No need to convert position since it's already a string
           
           // Handle both array and object formats for commands
           if (!Array.isArray(config.commands)) {

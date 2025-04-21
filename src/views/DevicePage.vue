@@ -90,7 +90,9 @@ const debugInfo = computed(() => {
   return {
     api: apiBaseUrl.value,
     devices: deviceStore.devices,
+    sortedDevices: deviceStore.sortedDevices,
     currentDeviceId: deviceStore.currentDeviceId,
+    currentDevicePosition: deviceStore.currentDevice?.position,
     isLoading: deviceStore.isLoading,
     systemConfig: deviceStore.systemConfig,
     uiSettings: {
