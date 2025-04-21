@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, computed, watch } from 'vue';
-import DeviceSelector from './components/DeviceSelector.vue';
-import DeviceRemote from './components/DeviceRemote.vue';
-import LogsPanel from './components/LogsPanel.vue';
-import ErrorDisplay from './components/ErrorDisplay.vue';
+import { onMounted, ref, watch } from 'vue';
 import { useDeviceStore } from './store/deviceStore';
 import { useUiStore } from './store/uiStore';
 import { checkServerConnectivity } from './utils/serverCheck';
@@ -61,34 +57,6 @@ watch(() => deviceStore.logs, (newLogs) => {
     error.value = null;
   }
 }, { deep: true });
-
-const reloadData = async () => {
-  error.value = null;
-  isConnecting.value = true;
-  
-  try {
-    const result = await checkServerConnectivity();
-    if (result.success) {
-      // Require system configuration
-      await deviceStore.reloadAll(); 
-    } else {
-      error.value = {
-        title: 'Connection Error',
-        message: result.message,
-        type: 'network'
-      };
-    }
-  } catch (err) {
-    console.error('Error checking connectivity:', err);
-    error.value = {
-      title: 'System Configuration Error',
-      message: 'Could not reload system configuration. Please check the server.',
-      type: 'server'
-    };
-  } finally {
-    isConnecting.value = false;
-  }
-};
 
 onMounted(async () => {
   // Check server connectivity first

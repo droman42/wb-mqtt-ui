@@ -62,13 +62,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import DeviceSelector from '../components/DeviceSelector.vue';
 import RemoteSimulator from '../components/RemoteSimulator.vue';
 import ErrorDisplay from '../components/ErrorDisplay.vue';
 import { useDeviceStore } from '../store/deviceStore';
-import { useUiStore } from '../store/uiStore';
 import { checkServerConnectivity } from '../utils/serverCheck';
 
 // Define error type
@@ -80,7 +79,6 @@ interface ErrorInfo {
 
 const router = useRouter();
 const deviceStore = useDeviceStore();
-const uiStore = useUiStore();
 const error = ref<ErrorInfo | null>(null);
 const isConnecting = ref(false);
 

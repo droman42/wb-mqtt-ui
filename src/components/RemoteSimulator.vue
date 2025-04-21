@@ -59,7 +59,6 @@ import { useDeviceStore } from '../store/deviceStore';
 import { useUiStore } from '../store/uiStore';
 import CommandButton from './CommandButton.vue';
 import { 
-  getCommandsByRow, 
   getCommandAtPosition as getCommandByPosition, 
   getGroupCellPositions,
   calculateGroupBounds,
@@ -93,11 +92,6 @@ const rowLetters = computed(() => {
   });
   
   return Array.from(rows).sort();
-});
-
-// Group commands by row
-const commandsByRow = computed(() => {
-  return getCommandsByRow(positionedCommands.value);
 });
 
 // Get group positions
