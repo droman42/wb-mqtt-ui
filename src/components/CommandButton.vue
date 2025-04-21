@@ -65,12 +65,6 @@
         </svg>
         <span v-if="uiStore.showButtonText">{{ props.command.description || getCommandLabel }}</span>
       </div>
-      
-      <div v-if="showDetails" class="details">
-        <pre>{{ JSON.stringify(command, null, 2) }}</pre>
-        <button @click="showDetails = false" class="details-toggle">Hide</button>
-      </div>
-      <button v-else @click="showDetails = true" class="details-toggle">Info</button>
     </div>
   </div>
 </template>
@@ -87,6 +81,7 @@ interface Command {
   actions?: string[];
   topic?: string;
   description?: string;
+  position?: string;
   [key: string]: any;
 }
 
@@ -97,7 +92,6 @@ const props = defineProps<{
 const deviceStore = useDeviceStore();
 const uiStore = useUiStore();
 const isExecuting = ref(false);
-const showDetails = ref(false);
 
 // Computed command label
 const getCommandLabel = computed(() => {
@@ -180,4 +174,6 @@ const executeCommand = async () => {
 };
 </script>
 
-<style src="../assets/CommandButton.css" scoped></style> 
+<style>
+@import '../assets/CommandButton.css';
+</style> 

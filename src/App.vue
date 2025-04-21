@@ -128,150 +128,78 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div id="app">
-    <header>
-      <h1>WB MQTT UI</h1>
-      <div class="toolbar">
-        <DeviceSelector />
-        
-        <div class="ui-settings">
-          <label class="ui-setting-toggle">
-            <input 
-              type="checkbox" 
-              v-model="uiStore.showButtonText"
-              @change="uiStore.saveSettings"
-            />
-            Show button text
-          </label>
-          
-          <label class="ui-setting-toggle">
-            <input 
-              type="checkbox" 
-              v-model="uiStore.defaultUseMqtt"
-              @change="uiStore.saveSettings"
-            />
-            Use MQTT by default
-          </label>
-        </div>
-      </div>
-    </header>
-    
-    <div v-if="isConnecting || deviceStore.isLoading" class="loading-message">
-      {{ isConnecting ? 'Connecting to server...' : 'Loading data...' }}
-    </div>
-    
-    <ErrorDisplay 
-      v-if="error" 
-      :error="error" 
-      @retry="reloadData" 
-    />
-    
-    <main>
-      <DeviceRemote />
-      <div class="remote-logs">
-        <LogsPanel />
-      </div>
-    </main>
+  <div class="app-container" :class="{ 'dark-theme': uiStore.darkTheme }">
+    <router-view />
   </div>
 </template>
 
 <style>
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f5f5f5;
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  max-width: 768px; /* Optimized for iPad vertical layout */
-  margin: 0 auto;
-  min-height: 100vh;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
+  background-color: #f8f9fa;
   color: #333;
 }
 
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.ui-settings {
-  display: flex;
-  gap: 1rem;
-}
-
-.ui-setting-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.loading-message {
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 1rem;
-  background-color: #f8f9fa;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+}
+
+/* Dark theme styles */
+.dark-theme {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Utility classes */
+.text-center {
   text-align: center;
-  color: #6c757d;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
-.remote-logs {
-  margin-top: 1rem;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 1rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-  #app {
-    grid-template-areas:
-      "header"
-      "main"
-      "aside";
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
-  }
-  
-  .toolbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .ui-settings {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 0.5rem;
-  }
+/* Button styles */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: #e9ecef;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.dark-theme button {
+  background-color: #333;
+  color: #f1f1f1;
+  border-color: #555;
+}
+
+.dark-theme button:hover {
+  background-color: #444;
 }
 </style>

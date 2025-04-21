@@ -1,88 +1,51 @@
 /* Container for the entire command button component */
 .command-button {
-  margin-bottom: 0; /* Remove bottom margin since grid handles spacing */
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack elements vertically */
-  width: 100%; /* Full width of grid cell */
-  height: 100%; /* Full height of grid cell */
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.25rem;
 }
 
 /* Container for the button and details toggle */
 .command-info {
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack elements vertically */
-  flex: 1; /* Take up available space */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Styling for the standard text button */
-button {
-  padding: 8px 10px; /* Reduce padding for more compact buttons */
-  border: none; /* Remove default border */
-  border-radius: 4px; /* Rounded corners */
-  background-color: #2c3e50; /* Dark blue background */
-  color: white; /* White text for contrast */
-  cursor: pointer; /* Show pointer cursor on hover */
-  font-weight: bold; /* Bold text for emphasis */
-  transition: background-color 0.3s; /* Smooth background transition */
-  flex: 1; /* Take remaining space */
-  min-height: 75px; /* Minimum height for button */
-  font-size: 0.9rem; /* Slightly smaller font for better fit */
-  display: flex; /* Use flexbox for centering */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  text-align: center; /* Center text */
-  word-break: break-word; /* Break long words */
+.command-info > button {
+  width: 100%;
+  height: 100%;
+  min-height: 45px;
+  border-radius: 8px;
+  padding: 0.25rem;
+  font-size: 0.8rem;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  word-break: break-word;
 }
 
-/* Hover effect for standard buttons */
-button:hover {
-  background-color: #1c2e40; /* Darker background on hover */
-}
-
-/* Active state for standard buttons */
-button:active {
-  background-color: #0c1e30; /* Even darker background when clicked */
+.command-info > button:hover {
+  background-color: #e9ecef;
 }
 
 /* Style for the button when command is executing */
-button.is-executing {
-  background-color: #95a5a6; /* Grey background when executing */
-  cursor: wait; /* Show waiting cursor */
-}
-
-/* Styling for the details toggle button */
-.details-toggle {
-  background-color: #6c757d; /* Grey background */
-  color: white; /* White text for contrast */
-  padding: 2px 8px; /* Smaller padding */
-  font-size: 10px; /* Smaller font size */
-  margin-top: 4px; /* Space above button */
-  min-width: auto; /* Auto width based on content */
-  align-self: flex-start; /* Align to the left */
-  min-height: auto; /* Override min-height from main button */
-  flex: 0; /* Don't expand */
-}
-
-/* Container for command details */
-.details {
-  background-color: #f8f9fa; /* Light background */
-  border: 1px solid #dee2e6; /* Light grey border */
-  border-radius: 4px; /* Rounded corners */
-  padding: 8px; /* Inner spacing */
-  margin-top: 4px; /* Space above container */
-  font-size: 11px; /* Smaller font size */
-  overflow-x: auto; /* Horizontal scrolling if needed */
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Include padding in width */
-}
-
-/* Styling for pre-formatted text in details */
-.details pre {
-  margin: 0 0 5px 0; /* Remove top/bottom margin, add small bottom margin */
-  white-space: pre-wrap; /* Wrap text */
-  font-family: monospace; /* Monospace font for code */
+.command-info > button.is-executing {
+  background-color: #e9ecef;
+  opacity: 0.7;
+  cursor: wait;
 }
 
 /* Container for MQTT toggle */
@@ -107,54 +70,82 @@ input[type="checkbox"] {
 /* SVG Button Styles */
 /* Container for SVG button */
 .svg-button {
-  cursor: pointer; /* Show pointer cursor */
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center content vertically */
-  padding: 0.75rem 0.5rem; /* Reduced padding for compact layout */
-  background-color: var(--button-background, #fff); /* White background from variables */
-  border-radius: 8px; /* Slightly reduced corner radius */
-  box-shadow: 0 2px 4px var(--button-shadow, rgba(0, 0, 0, 0.1)); /* Subtle shadow for depth */
-  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
-  height: 100%; /* Take full height */
-  text-align: center; /* Center text content */
-  position: relative; /* Create positioning context */
+  width: 100%;
+  height: 100%;
+  min-height: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Hover effect for SVG button */
 .svg-button:hover {
-  transform: translateY(-2px); /* Move up slightly */
-  box-shadow: 0 4px 8px var(--button-hover-shadow, rgba(0, 0, 0, 0.15)); /* Stronger shadow */
+  background-color: #e9ecef;
 }
 
-/* SVG icon container */
+/* SVG icon */
 .svg-button svg {
-  width: 2.5rem; /* Slightly reduced icon width */
-  height: 2.5rem; /* Slightly reduced icon height */
-  fill: var(--foreground-color, #333); /* Dark fill from variables */
-  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
-  display: block; /* Block display for proper centering */
-  position: relative; /* Use relative positioning */
-  margin: 0 auto 0.5rem; /* Reduced bottom margin */
-  overflow: visible; /* Allow content to overflow */
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  margin-bottom: 0.2rem;
 }
 
-/* Special styling for text-based SVGs */
-.svg-button .text-based-svg {
-  width: 100%; /* Fill available width */
-  max-width: 140px; /* Maximum width for larger containers */
-  height: 2.5rem; /* Match the standard SVG height */
-}
-
-/* Text below SVG icon */
+/* Text label below SVG */
 .svg-button span {
-  font-size: 0.8rem; /* Smaller font size for compact layout */
-  user-select: none; /* Prevent text selection */
-  text-align: center; /* Center text */
-  line-height: 1.2; /* Tighter line height */
-  display: -webkit-box; /* For multi-line ellipsis */
-  -webkit-line-clamp: 2; /* Show max 2 lines */
-  -webkit-box-orient: vertical; /* Required for -webkit-line-clamp */
-  overflow: hidden; /* Hide overflow */
+  font-size: 0.7rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.2rem;
+  line-height: 1.1;
+  max-height: 2.2em;
+  overflow: hidden;
+}
+
+/* Text-based SVG for actions without icons */
+.text-based-svg {
+  font-family: sans-serif;
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* Dark theme styles */
+.dark-theme .command-info > button,
+.dark-theme .svg-button {
+  background-color: #333;
+  border-color: #444;
+  color: #f1f1f1;
+}
+
+.dark-theme .command-info > button:hover,
+.dark-theme .svg-button:hover {
+  background-color: #444;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+  .command-info > button {
+    font-size: 0.7rem;
+    min-height: 40px;
+  }
+  
+  .svg-button {
+    min-height: 40px;
+  }
+  
+  .svg-button svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .svg-button span {
+    font-size: 0.6rem;
+  }
 } 

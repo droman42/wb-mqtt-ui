@@ -68,21 +68,8 @@ export const useDeviceStore = defineStore('device', {
     },
     
     sortedDevices: (state) => {
-      // Create an array of objects with deviceId and position
-      const devicesWithPosition = state.devices.map(deviceId => ({
-        deviceId,
-        position: state.deviceConfigs[deviceId]?.position ?? ""
-      }));
-      
-      // Sort by position as string, then by deviceId as fallback
-      return devicesWithPosition
-        .sort((a, b) => {
-          if (a.position === b.position) {
-            return a.deviceId.localeCompare(b.deviceId);
-          }
-          return a.position.localeCompare(b.position);
-        })
-        .map(device => device.deviceId);
+      // Sort devices alphabetically by deviceId
+      return [...state.devices].sort((a, b) => a.localeCompare(b));
     },
     
     sortedDeviceGroups: (state) => {
